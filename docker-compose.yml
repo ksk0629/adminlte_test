@@ -6,22 +6,22 @@ services:
   app:
     # Connect 8000 port of the host to 80 port of the container.
     ports:
-      - "8000:80"
+      - "8001:80"
     build: ./docker/app
-    container_name: laravel_app
+    container_name: adminlte_test_app
     volumes:
       - ./:/var/www/html/
 
   # Container for MySql.
   db:
     build: ./docker/db
-    container_name: laravel_db
+    container_name: adminlte_test_db
     environment:
       # >>> Should be changed >>>
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel_db
-      MYSQL_USER: laravel_user
-      MYSQL_PASSWORD: laravel_pass
+      MYSQL_DATABASE: adminlte_test
+      MYSQL_USER: adminlte_test
+      MYSQL_PASSWORD: adminlte_test
       # <<< Should be changed <<<
       TZ: "Europe/London"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -29,4 +29,4 @@ services:
       - ./docker/db/data:/var/lib/mysql
       - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
-      - 3306:3306
+      - 3307:3306
